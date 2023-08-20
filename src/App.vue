@@ -23,6 +23,18 @@
     { id: 2, name: 'Jane Doe', email: 'jane@example.com', admin: false },
     { id: 3, name: 'Kevin MacDonald', email: 'kevin@test.com', admin: false },
   ]
+  //繰り返し処理
+
+  const clickButton = (event) => {
+    console.log(event.target);
+    event.target.style.backgroundColor = 'red';
+  }
+  const another = (msg) => {
+    console.log(msg);
+  }
+  const send = () => {
+    console.log('send');
+  };
 </script>
 
 <template>
@@ -54,6 +66,12 @@
       {{ name }}: {{ value }}
     </div>
   </div>
+  <!-- 繰り返し処理 -->
+
+  <button @click="clickButton($event), another('click')">クリック</button>
+  <form @submit.prevent="send">
+    <button @keyup.enter>送信</button>
+  </form>
 </template>
 
 <style scoped>
