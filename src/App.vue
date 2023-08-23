@@ -54,6 +54,21 @@
     state2.value.count++;
   };
   //reactivity
+
+  const message2 = ref('Hello World');
+
+  const clickButton2 = () => {
+    console.log(message2.value);
+  };
+
+  const form = reactive({
+    message: 'Hello World',
+  });
+
+  const clickButton3 = () => {
+    console.log(form.message);
+  };
+  //form
 </script>
 
 <template>
@@ -98,6 +113,15 @@
   </button>
   <button type="button" @click="addCount2">count is: {{ state2.count }}</button>
   <!-- reactivity -->
+
+  <p>{{ message2 }}</p>
+  <input v-model="message2" />
+  <div><button @click="clickButton2">Click</button></div>
+
+  <p>{{ form.message }}</p>
+  <input v-model.trim="form.message" />
+  <div><button @click="clickButton3">Click</button></div>
+  <!-- form -->
 </template>
 
 <style scoped>
