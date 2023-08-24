@@ -37,7 +37,7 @@
   };
   //イベント
 
-  import { reactive } from 'vue';
+  import { reactive, computed } from 'vue';
   const state = reactive({
     count: 0,
   });
@@ -69,6 +69,21 @@
     console.log(form.message);
   };
   //form
+
+  const user2 = reactive({
+    firstName: 'John',
+    lastName: 'Doe'
+  })
+
+  const fullName = computed(() => `${user2.firstName} ${user2.lastName}`);
+  const users3 = [
+    { id: 1, name: 'John Doe', email: 'john@test.com', admin: true },
+    { id: 2, name: 'Jane Doe', email: 'jane@example.com', admin: false },
+    { id: 3, name: 'Kevin MacDonald', email: 'kevin@test.com', admin: false },
+  ];
+  const adminUsers = computed(() =>
+    users3.filter((user) => user.admin === true)
+  );
 </script>
 
 <template>
@@ -122,6 +137,11 @@
   <input v-model.trim="form.message" />
   <div><button @click="clickButton3">Click</button></div>
   <!-- form -->
+
+  <h2>fullName: {{ fullName }}</h2>
+  <div v-for="user in adminUsers" :key="user.id">
+    <div>{{ user.id }} {{ user.name }} {{ user.email }}</div>
+  </div>
 </template>
 
 <style scoped>
