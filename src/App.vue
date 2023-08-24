@@ -46,7 +46,7 @@
     console.log(state.count)
   };
 
-  import { ref } from 'vue';
+  import { ref, watch } from 'vue';
   const state2 = ref({
     count: 0,
   });
@@ -84,6 +84,15 @@
   const adminUsers = computed(() =>
     users3.filter((user) => user.admin === true)
   );
+  //computed
+
+  const count = ref(0);
+
+  watch(count, (count, previous) => {
+    console.log('count:', count);
+    console.log('previous:', previous);
+  });
+  //watcher
 </script>
 
 <template>
@@ -142,6 +151,10 @@
   <div v-for="user in adminUsers" :key="user.id">
     <div>{{ user.id }} {{ user.name }} {{ user.email }}</div>
   </div>
+  <!-- computed -->
+
+  <button @click="count++">Count:{{ count }}</button>
+  <!-- watcher -->
 </template>
 
 <style scoped>
